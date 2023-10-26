@@ -6,12 +6,25 @@ import { useMutateTodo } from "../queries";
 
 function TodoListItem({ id, title, completed }: Todo) {
   const { mutate } = useMutateTodo();
+  
+  const handleCheck = () => {
+    mutate({
+      id,
+      completed: !completed,
+    },{
+      onSuccess: (data) => {
+        // here we could notify the user
+        if(data.completed) {
+          console.log('task completed');
+        } else {
+          console.log('task not completed');
+        }
+      }
+    })
+  }
   return (
     <View style={styles.container}>
-      <CheckBox value={completed} onValueChange={() => mutate({
-        id,
-        completed: !completed,
-      })}/>
+      <CheckBox value={completed} onValueChange={() => handleCheck()}/>
       <Text style={[styles.title, completed && styles.completed]}>{title}</Text>
     </View>
   );
