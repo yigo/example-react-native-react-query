@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, FlatList } from 'react-native';
+import { Text } from 'react-native';
 import TodoList from '../domains/todos/components/TodoList';
 
 export default function App() {
